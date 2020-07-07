@@ -23,8 +23,6 @@
       <arg name="kinect_enabled" value="$(arg r1_kinect_enabled)" />
       <arg name="realsense_enabled" value="$(arg r1_realsense_enabled)" />
     </include>
-    <!-- setting null tf_prefix -->
-    <!-- <param name="tf_prefix" value="/"/>  -->
     <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" 
         args="$(arg r1_initX) $(arg r1_initY) 0 $(arg r1_initYaw) 0 0 map $(arg r1_tfpre)/odom 100" />
   </group>
@@ -52,8 +50,6 @@
       <arg name="kinect_enabled" value="$(arg r2_kinect_enabled)" />
       <arg name="realsense_enabled" value="$(arg r2_realsense_enabled)" />
     </include>
-    <!-- setting null tf_prefix -->
-    <!-- <param name="tf_prefix" value="/"/> -->
     <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" 
         args="$(arg r2_initX) $(arg r2_initY) 0 $(arg r2_initYaw) 0 0 map $(arg r2_tfpre)/odom 100" />
   </group>
