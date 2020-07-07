@@ -20,6 +20,7 @@
 <!-- Including the robots -->
 <!--******************************-->
   <include file="$(find multi_husky_gazebo)/launch/include/robots.launch" />
+  <!-- <include file="$(find multi_husky_gazebo)/launch/include/one_robot.launch" /> -->
 
 <!--******************************-->
 <!-- launching rviz -->
