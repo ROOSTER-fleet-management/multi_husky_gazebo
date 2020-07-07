@@ -1,0 +1,61 @@
+<launch>
+
+<!--  ..............................  ROBOT1  .....................................  -->
+  <arg name="r1_namespace" default="hsk01" />
+  <arg name="r1_tfpre" default="$(arg r1_namespace)_tf" />
+  <arg name="r1_robot_name"  default="husky_$(arg r1_namespace)" />
+  <arg name="r1_laser_enabled" default="true"/>
+  <arg name="r1_kinect_enabled" default="false"/>
+  <arg name="r1_realsense_enabled" default="false"/>
+  <arg name="r1_initX" default="7.2" />
+  <arg name="r1_initY" default="-2.2" />
+  <arg name="r1_initYaw" default="0" />
+  
+  <group ns="$(arg r1_namespace)">
+    <include file="$(find multi_husky_gazebo)/launch/include/husky.launch">
+      <arg name="namespace" value="$(arg r1_namespace)" />
+      <arg name="tfpre" value="$(arg r1_tfpre)" />
+      <arg name="robot_name"  value="$(arg r1_robot_name)" />
+      <arg name="initX" value="$(arg r1_initX)" />
+      <arg name="initY" value="$(arg r1_initY)" />
+      <arg name="initYaw" value="$(arg r1_initYaw)" />
+      <arg name="laser_enabled" value="$(arg r1_laser_enabled)" />
+      <arg name="kinect_enabled" value="$(arg r1_kinect_enabled)" />
+      <arg name="realsense_enabled" value="$(arg r1_realsense_enabled)" />
+    </include>
+    <!-- setting null tf_prefix -->
+    <!-- <param name="tf_prefix" value="/"/>  -->
+    <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" 
+        args="$(arg r1_initX) $(arg r1_initY) 0 $(arg r1_initYaw) 0 0 map $(arg r1_tfpre)/odom 100" />
+  </group>
+
+<!--  ..............................  ROBOT2  ......................................  -->
+  <arg name="r2_namespace" default="hsk02" />
+  <arg name="r2_tfpre" default="$(arg r2_namespace)_tf" />
+  <arg name="r2_robot_name"  default="husky_$(arg r2_namespace)" />
+  <arg name="r2_initX" default="6.7" />
+  <arg name="r2_initY" default="7.6" />
+  <arg name="r2_initYaw" default="1.6" />
+  <arg name="r2_laser_enabled" default="true"/>
+  <arg name="r2_kinect_enabled" default="false"/>
+  <arg name="r2_realsense_enabled" default="false"/>
+  
+  <group ns="$(arg r2_namespace)">
+    <include file="$(find multi_husky_gazebo)/launch/include/husky.launch">
+      <arg name="namespace" value="$(arg r2_namespace)" />
+      <arg name="tfpre" value="$(arg r2_tfpre)" />
+      <arg name="robot_name"  value="$(arg r2_robot_name)" />
+      <arg name="initX" value="$(arg r2_initX)" />
+      <arg name="initY" value="$(arg r2_initY)" />
+      <arg name="initYaw" value="$(arg r2_initYaw)" />
+      <arg name="laser_enabled" value="$(arg r2_laser_enabled)" />
+      <arg name="kinect_enabled" value="$(arg r2_kinect_enabled)" />
+      <arg name="realsense_enabled" value="$(arg r2_realsense_enabled)" />
+    </include>
+    <!-- setting null tf_prefix -->
+    <!-- <param name="tf_prefix" value="/"/> -->
+    <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" 
+        args="$(arg r2_initX) $(arg r2_initY) 0 $(arg r2_initYaw) 0 0 map $(arg r2_tfpre)/odom 100" />
+  </group>
+
+</launch>
